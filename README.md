@@ -1,4 +1,4 @@
-<div style="text-align:center"><img src="./resources/logo.png" alt="logo" width="800"/></div>
+<div style="text-align:center"><img src="./resources/banner.png" alt="logo" width="800"/></div>
 
 # CactusLib - A BDSX Library
 
