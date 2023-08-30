@@ -6,10 +6,11 @@ import { events } from "bdsx/event";
 import { bedrockServer } from "bdsx/launcher";
 import * as packagee from "./package.json"
 import { wineCompatible } from "bdsx/winecompatible";
-import { command } from "bdsx/command";
 import { VoidPointer } from "bdsx/core";
 import { uint32_t } from "bdsx/nativetype";
 import { procHacker } from "bdsx/prochacker";
+import { ScoreboardId } from "bdsx/bds/scoreboard";
+import { Actor } from "bdsx/bds/actor";
 
 events.serverOpen.on(() => {
     console.log(`[CactusLib] Loaded`)
@@ -218,5 +219,38 @@ export class CactusLib {
     static removeTickingAreas(name: string) {
         const command = `tickingarea remove "${name}"`;
         bedrockServer.executeCommand(command);
+    }
+
+    /**
+     * Gets the scoreboard value of an actor
+     * @param entity actor
+     * @param objectiveName string
+     * @returns A number or null
+     */
+    static getEntityScore(entity: Actor, objectiveName: string): number | null {
+        const g_scoreboard = bedrockServer.level.getScoreboard();
+        const objective = g_scoreboard.getObjective(objectiveName);
+        if (objective === null) return null;
+        let id: ScoreboardId;
+        if (entity.isPlayer()) id = g_scoreboard.getPlayerScoreboardId(entity);
+        else id = g_scoreboard.getActorScoreboardId(entity);
+        const info = objective.getPlayerScore(id);
+        return info.valid ? info.value : null;
+    }
+
+    /**
+     * Gets the scoreboard value of an actor
+     * @param entity actor
+     * @param objectiveName string
+     * @returns A number or null
+     */
+    static setEntityScore(entity: Actor, objectiveName: string, value: number) {
+        const g_scoreboard = bedrockServer.level.getScoreboard();
+        const objective = g_scoreboard.getObjective(objectiveName);
+        if (objective === null) return null;
+        let id: ScoreboardId;
+        if (entity.isPlayer()) id = g_scoreboard.getPlayerScoreboardId(entity);
+        else id = g_scoreboard.getActorScoreboardId(entity);
+        g_scoreboard.setPlayerScore(id, objective, value);
     }
 }
