@@ -22,6 +22,12 @@ let playerVec3 = player.getFeetPos()
 let blockPos = CactusLib.Vec3toBlockPos(playerVec3)
 console.log(blockPos)
 ```
+
+Create a client sided block:
+```ts
+CactusLib.createClientBlock(player, blokcPos, "minecraft:stone")
+```
+
 Creating and removing ticking areas:
 ```ts
 // Creating a ticking area with the name "test"
