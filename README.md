@@ -37,19 +37,13 @@ CactusLib.createTickingAreas("test", {x: 5, z: 5}, {x: -5, z: -5})
 CactusLib.removeTickingAreas("test")
 ```
 
-Changing a players permission level: (Not command permission)
+Gettting a players scoreboard value and adding 2:
 ```ts
-//Set a player to custom
-CactusLib.setPermissionLevel(player, PlayerPermission.CUSTOM)
+// Gets Score
+let score = CactusLib.getEntityScore(player, "test")!
 
-//Set a player to visitor
-CactusLib.setPermissionLevel(player, PlayerPermission.VISITOR)
-
-//Set a player to member
-CactusLib.setPermissionLevel(player, PlayerPermission.MEMBER)
-
-//Set a player to operator
-CactusLib.setPermissionLevel(player, PlayerPermission.OPERATOR)
+// Adds +2 to the score
+CactusLib.setEntityScore(player, "test", score + 2)
 ```
 
 ---
