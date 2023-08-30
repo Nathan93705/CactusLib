@@ -1,0 +1,22 @@
+{
+    "name": "@bdsx/CactusLib",
+    "version": "1.0.0",
+    "description": "A library of functions and utilites for other plugins",
+    "main": "./index.js",
+    "keywords": [
+        "bdsx",
+        "CactusLib",
+        "library"
+    ],
+    "author": "Nathan93705",
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc -w",
+        "prepare": "tsc || exit 0"
+    },
+    "devDependencies": {
+        "@types/node": "^12.20.36",
+        "bdsx": "file:../bdsx",
+        "colors": "1.4.0 || ^1.4.3"
+    }
+}
